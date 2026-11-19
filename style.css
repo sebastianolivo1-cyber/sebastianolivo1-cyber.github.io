@@ -1,15 +1,15 @@
 :root {
-  --color-background: #f7f8f5;
+  --color-background: #f5f3ee;
   --color-surface: #ffffff;
-  --color-text: #1d2926;
-  --color-muted: #5d6865;
-  --color-line: #dce2de;
-  --color-accent: #246b57;
-  --color-accent-soft: #e8f0ec;
+  --color-text: #242321;
+  --color-muted: #68645e;
+  --color-line: #ddd8cf;
+  --color-accent: #a64b32;
+  --color-accent-soft: #f1e7df;
   --font-sans: "Manrope", sans-serif;
   --font-serif: "Source Serif 4", serif;
   --container-width: 1120px;
-  --section-space: clamp(4.5rem, 9vw, 7.5rem);
+  --section-space: clamp(5rem, 9vw, 8rem);
   --content-width: 65ch;
 }
 
@@ -28,7 +28,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -36,6 +36,7 @@ a {
   color: inherit;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
+  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
 }
 
 a:hover {
@@ -43,7 +44,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 3px solid #e7a93b;
+  outline: 3px solid var(--color-accent);
   outline-offset: 4px;
 }
 
@@ -84,7 +85,7 @@ a:hover {
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--color-line);
-  background: rgba(247, 248, 245, 0.96);
+  background: rgba(245, 243, 238, 0.96);
 }
 
 .nav {
@@ -97,7 +98,7 @@ a:hover {
 
 .nav-brand {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -109,9 +110,28 @@ a:hover {
 }
 
 .nav-links a {
-  font-size: 0.88rem;
-  font-weight: 700;
+  position: relative;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.35rem;
+  left: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 160ms ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .nav-toggle {
@@ -119,9 +139,15 @@ a:hover {
   width: 2.75rem;
   height: 2.75rem;
   border: 1px solid var(--color-line);
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   background: transparent;
   cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.nav-toggle:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface);
 }
 
 .nav-toggle-bar {
@@ -133,7 +159,7 @@ a:hover {
 }
 
 .intro {
-  min-height: 38rem;
+  min-height: 36rem;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-line);
@@ -165,25 +191,26 @@ a:hover {
   max-width: 10ch;
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(3.25rem, 8vw, 6.25rem);
-  line-height: 0.98;
-  letter-spacing: -0.035em;
+  font-size: clamp(3.75rem, 8vw, 6.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
 }
 
 .headline {
   max-width: 32ch;
   margin: 1.5rem 0 0;
-  color: var(--color-accent);
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--color-text);
+  font-size: clamp(1.1rem, 2vw, 1.32rem);
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .intro-copy {
   max-width: var(--content-width);
   margin: 1.25rem 0 2rem;
   color: var(--color-muted);
-  font-size: 1.08rem;
+  font-size: 1.125rem;
+  line-height: 1.75;
 }
 
 .text-link {
@@ -195,6 +222,10 @@ a:hover {
   text-decoration: none;
   border-bottom: 1px solid var(--color-accent);
   padding-bottom: 0.15rem;
+}
+
+.text-link:hover {
+  gap: 0.75rem;
 }
 
 .section {
@@ -224,8 +255,9 @@ a:hover {
 .section-heading h2 {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
-  line-height: 1.1;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
 
 .section-content {
@@ -235,7 +267,8 @@ a:hover {
 .prose {
   max-width: var(--content-width);
   color: var(--color-muted);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
+  line-height: 1.8;
 }
 
 .prose p {
@@ -243,7 +276,7 @@ a:hover {
 }
 
 .prose p + p {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 .experience-list {
@@ -251,7 +284,7 @@ a:hover {
 }
 
 .experience-item {
-  padding: 1.75rem 0;
+  padding: 2rem 0;
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -272,11 +305,11 @@ a:hover {
 }
 
 .experience-header h3 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 
 .organization {
-  color: var(--color-accent);
+  color: var(--color-text);
   font-weight: 700;
 }
 
@@ -288,7 +321,8 @@ a:hover {
 
 .experience-meta {
   color: var(--color-muted);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
   text-align: right;
 }
 
@@ -304,15 +338,19 @@ a:hover {
 }
 
 .experience-item li + li {
-  margin-top: 0.35rem;
+  margin-top: 0.5rem;
 }
 
 .project-card {
   max-width: 760px;
   padding: clamp(1.5rem, 4vw, 2.5rem);
   border: 1px solid var(--color-line);
-  border-left: 4px solid var(--color-accent);
+  border-radius: 0.75rem;
   background: var(--color-surface);
+}
+
+.project-card h3 {
+  font-size: 1.75rem;
 }
 
 .placeholder-label {
@@ -367,12 +405,13 @@ a:hover {
 .education-item,
 .recognition {
   border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
   background: var(--color-surface);
   padding: 1.5rem;
 }
 
 .education-item h3 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
 }
 
 .education-item p {
@@ -381,14 +420,13 @@ a:hover {
 }
 
 .education-item .organization {
-  color: var(--color-accent);
+  color: var(--color-text);
   font-size: 1rem;
 }
 
 .recognition {
   grid-column: 1 / -1;
-  background: var(--color-accent-soft);
-  border-color: #cadbd3;
+  background: var(--color-surface);
 }
 
 .recognition p {
@@ -412,8 +450,14 @@ a:hover {
 .skill-group {
   min-height: 14rem;
   padding: 1.5rem;
-  border-top: 3px solid var(--color-accent);
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
   background: var(--color-surface);
+}
+
+.skill-group h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
 }
 
 .skill-group h3 {
@@ -443,6 +487,7 @@ a:hover {
   min-width: 0;
   padding: 1.25rem;
   border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
   background: var(--color-surface);
   overflow-wrap: anywhere;
   text-decoration: none;
